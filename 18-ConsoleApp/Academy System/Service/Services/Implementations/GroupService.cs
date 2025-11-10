@@ -13,6 +13,10 @@ namespace Service.Services.Implementations
     {
         private GroupRepository _groupRepository;
         private int _count;
+        public GroupService()
+        {
+            _groupRepository= new GroupRepository();
+        }
         public Group Create(Group group)
         {
             group.Id = _count; 
