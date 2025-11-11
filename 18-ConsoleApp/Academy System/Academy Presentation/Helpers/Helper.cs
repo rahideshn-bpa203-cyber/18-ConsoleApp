@@ -13,6 +13,7 @@ namespace Academy_Presentation.Helpers
         {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
+            //Console.ResetColor();
         }
     }
 }

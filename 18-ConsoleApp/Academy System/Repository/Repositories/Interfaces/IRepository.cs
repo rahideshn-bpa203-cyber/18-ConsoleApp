@@ -15,7 +15,7 @@ namespace Repository.Repositories.Interfaces
         
         T Get(Predicate<T> predicate);
         List<T> GetAll(Predicate<T> predicate);
-
+        List<T> Search(string searchText);
 
 
     }

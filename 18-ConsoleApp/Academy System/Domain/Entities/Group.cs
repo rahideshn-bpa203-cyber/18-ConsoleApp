@@ -12,6 +12,11 @@ namespace Domain.Entities
         public string Name { get; set; }
         public string Teacher { get; set; }
         public string Room { get; set; }
-        
+
+        public static explicit operator List<object>(Group v)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

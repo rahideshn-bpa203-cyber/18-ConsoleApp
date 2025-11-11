@@ -16,36 +16,57 @@ namespace Repository.Repositories.Implementations
         {
             try
             {
-              if(data is null) throw new NotFoundException("Data not found");
+                if (data is null) throw new NotFoundException("data not found");
 
-              AppDbContext<Group>.datas.Add(data);
+                AppDpContext<Group>.datas.Add(data);
             }
             catch (Exception ex)
-            { 
+            {
                 Console.WriteLine(ex.Message);
             }
-           
-
         }
 
         public void Delete(Group data)
         {
-            throw new NotImplementedException();
+            AppDpContext<Group>.datas.Remove(data);
         }
 
         public Group Get(Predicate<Group> predicate)
         {
-            throw new NotImplementedException();
+            return predicate != null ? AppDpContext<Group>.datas.Find(predicate) : null;
         }
 
-        public List<Group> GetAll(Predicate<Group> predicate)
+        public List<Group> GetAll(Predicate<Group> predicate = null)
+        {
+            return predicate != null ? AppDpContext<Group>.datas.FindAll(predicate) : AppDpContext<Group>.datas;
+
+        }
+
+        public List<Group> Search(string searchText)
         {
             throw new NotImplementedException();
         }
 
         public void Update(Group data)
         {
-            throw new NotImplementedException();
+
+
+
+            Group dpGroup = Get(g => g.Id == data.Id);
+
+            if (dpGroup == null) return;
+
+            if (!string.IsNullOrEmpty(data.Name))
+            {
+                dpGroup.Name = data.Name;
+            }
+
+            if (data.Id > 0)
+            {
+                dpGroup.Id = data.Id;
+            }
+
         }
     }
 }
+
