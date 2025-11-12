@@ -20,9 +20,22 @@ namespace Service.Services.Implementations
 
         }
 
-       
-      
+        public Group Create(Group group)
+        {
+            group.Id = _count;
 
+            groupRepository.Create(group);
+
+            _count++;
+            return group;
+        }
+
+        public void Delete(int id)
+        {
+            Group group = GetById(id);
+
+            groupRepository.Delete(group);
+        }
 
         public List<Group> GetAll()
         {
@@ -36,10 +49,11 @@ namespace Service.Services.Implementations
             return group;
         }
 
-      
-        public List<Group> Search(string name)
+        public Group GetByRoom(string groupRoom)
         {
-            return groupRepository.GetAll(g => g.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
+            Group group = groupRepository.Get(g => g.Room == groupRoom);
+            if (group is null) return null;
+            return group;
         }
 
         public Group GetByTeacher(string groupTeacher)
@@ -49,24 +63,12 @@ namespace Service.Services.Implementations
             return group;
         }
 
-        public Group GetByRoom(string groupRoom)
+        public List<Group> Search(string name)
         {
-            Group group = groupRepository.Get(g => g.Room == groupRoom);
-            if (group is null) return null;
-            return group;
+            return groupRepository.GetAll(g => g.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
         }
 
-        public Group CreateGroup(Group group)
-        {
-            group.Id = _count;
-
-            groupRepository.Create(group);
-
-            _count++;
-            return group;
-        }
-
-        public Group UpdateGroup(int id, Group group)
+        public Group Update(int id, Group group)
         {
             Group dbGroup = GetById(id);
 
@@ -77,38 +79,6 @@ namespace Service.Services.Implementations
             groupRepository.Update(group);
 
             return GetById(id);
-        }
-
-        public void DeleteGroup(int id)
-        {
-            Group group = GetById(id);
-
-            groupRepository.Delete(group);
-        }
-
-        public Group GetGroupById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Group GetAllByTeacher(string teacher)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Group GetAllByRoom(int room)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Group> GetAllGroups()
-        {
-            return groupRepository.GetAll();
-        }
-
-        public Group SearchMethodForGroupsByName(string name)
-        {
-            return groupRepository.GetAll(g => g.Name);
         }
     }
 }
