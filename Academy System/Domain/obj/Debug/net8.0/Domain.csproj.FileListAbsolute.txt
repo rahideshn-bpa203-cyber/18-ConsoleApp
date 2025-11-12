@@ -1,0 +1,23 @@
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\bin\Debug\net8.0\Domain.deps.json
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\bin\Debug\net8.0\Domain.dll
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\bin\Debug\net8.0\Domain.pdb
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.dll
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\refint\Domain.dll
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\Domain.pdb
+C:\Users\Elcan\OneDrive\Şəkillər\İş masası\Academy System\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\bin\Debug\net8.0\Domain.deps.json
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\bin\Debug\net8.0\Domain.dll
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\bin\Debug\net8.0\Domain.pdb
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.dll
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\refint\Domain.dll
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\Domain.pdb
+C:\Users\asus\OneDrive\Desktop\ConsoleApp\Academy System\Domain\obj\Debug\net8.0\ref\Domain.dll
