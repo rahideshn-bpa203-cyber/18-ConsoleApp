@@ -13,7 +13,7 @@ namespace Academy_Presentation.Controllers
 {
     public class StudentController
     {
-        StudentService _studentService = new StudentService();
+        StudentService _studentService = new ();
         public void Create()
         {
         GroupID: Helper.PrintConsole(ConsoleColor.Blue, "Enter Group ID:");
@@ -24,63 +24,71 @@ namespace Academy_Presentation.Controllers
             {
             Name: Helper.PrintConsole(ConsoleColor.Blue, "Enter Student name:");
                 string studentName = Console.ReadLine();
-                if (string.IsNullOrEmpty(studentName) || studentName.Any(char.IsDigit))
+                if (string.IsNullOrEmpty(studentName) || studentName.Any(char.IsDigit) || (studentName.Length > 30))
                 {
-                    Helper.PrintConsole(ConsoleColor.Red, "Group name can not be empty or number");
+                    Helper.PrintConsole(ConsoleColor.Red, "Student name can not be empty,contain numbers or exceed 30 characters");
                     goto Name;
 
                 }
 
+
             Surname: Helper.PrintConsole(ConsoleColor.Blue, "Enter Student surname:");
                 string studentSurname = Console.ReadLine();
-                if (string.IsNullOrEmpty(studentSurname) || studentSurname.Any(char.IsDigit))
+                if (string.IsNullOrEmpty(studentSurname) || studentSurname.Any(char.IsDigit) || (studentSurname.Length > 30))
                 {
-                    Helper.PrintConsole(ConsoleColor.Red, "Group name can not be empty or number");
+                    Helper.PrintConsole(ConsoleColor.Red, "Group surnname can not be empty or number,contain numbers or exceed 30 characters");
                     goto Surname;
 
                 }
 
-            AGE: Helper.PrintConsole(ConsoleColor.Blue, "Enter Student age:");
+            AGE:
+                Helper.PrintConsole(ConsoleColor.Blue, "Enter Student age:");
                 string addedAge = Console.ReadLine();
                 int age;
                 bool isAge = int.TryParse(addedAge, out age);
-                if (age >= 0)
+
+                if (!isAge)
                 {
-                    if (isAge)
-                    {
-                        studentName = char.ToUpper(studentName[0]) + studentName.Substring(1).ToLower();
-                        studentSurname = char.ToUpper(studentSurname[0]) + studentSurname.Substring(1).ToLower();
-
-                        Students student = new Students { Name = studentName, Surname = studentSurname, Age = age };
-                        var result = _studentService.Create(groupId, student);
-
-                        if (result != null)
-                        {
-                            Helper.PrintConsole(ConsoleColor.Green, $"ID: {student.Id},Name: {studentName},Surname: {studentSurname},Age: {age},Group: {result.Group.Name}");
-
-                        }
-                        else
-                        {
-                            Helper.PrintConsole(ConsoleColor.Red, "Group NOT FOUND");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        Helper.PrintConsole(ConsoleColor.Red, "Add correct age type");
-                        goto AGE;
-                    }
+                    Helper.PrintConsole(ConsoleColor.Red, "Add correct age type (only numbers)");
+                    goto AGE;
+                }
+                else if (age < 18)
+                {
+                    Helper.PrintConsole(ConsoleColor.Red, "Age must be at least 18!");
+                    goto AGE;
+                }
+                else if (age > 100)
+                {
+                    Helper.PrintConsole(ConsoleColor.Red, "Age cannot exceed 100!");
+                    goto AGE;
                 }
                 else
                 {
-                    Helper.PrintConsole(ConsoleColor.Red, "Age can't be negative");
-                    goto AGE;
+                   
+                    studentName = char.ToUpper(studentName[0]) + studentName.Substring(1).ToLower();
+                    studentSurname = char.ToUpper(studentSurname[0]) + studentSurname.Substring(1).ToLower();
+
+                    Students student = new Students
+                    {
+                        Name = studentName,
+                        Surname = studentSurname,
+                        Age = age
+                    };
+
+                    var result = _studentService.Create(groupId, student);
+
+                    if (result != null)
+                    {
+                        Helper.PrintConsole(ConsoleColor.Green,
+                            $"ID: {student.Id}, Name: {studentName}, Surname: {studentSurname}, Age: {age}, Group: {result.Group.Name}");
+                    }
+                    else
+                    {
+                        Helper.PrintConsole(ConsoleColor.Red, "Group NOT FOUND");
+                        return;
+                    }
                 }
-            }
-            else
-            {
-                Helper.PrintConsole(ConsoleColor.Red, "Add correct Group ID type");
-                goto GroupID;
+
             }
         }
         public void GetById()
@@ -116,26 +124,28 @@ namespace Academy_Presentation.Controllers
             string deleteID = Console.ReadLine();
             int id;
             bool isID = int.TryParse(deleteID, out id);
-            if (isID)
-            {
-                if (id > 0)
-                {
-                    _studentService.Delete(id);
 
-                    Helper.PrintConsole(ConsoleColor.DarkGreen, "All done,you can continue.");
-                }
-                else
-                {
-                    Helper.PrintConsole(ConsoleColor.Red, "Warning! ID can't be zero or negative,please try again");
-                    goto StudentID;
-
-                }
-            }
-            else
+            if (!isID)
             {
-                Helper.PrintConsole(ConsoleColor.Red, "Invalid ID type");
+                Helper.PrintConsole(ConsoleColor.Red, "Invalid ID type! Please enter numbers only.");
                 goto StudentID;
             }
+
+            if (id <= 0)
+            {
+                Helper.PrintConsole(ConsoleColor.Red, "Warning! ID can't be zero or negative, please try again");
+                goto StudentID;
+            }
+
+            var student = _studentService.GetById(id);
+            if (student == null)
+            {
+                Helper.PrintConsole(ConsoleColor.Red, $"Student with ID {id} not found.");
+                return;
+            }
+
+            _studentService.Delete(id);
+            Helper.PrintConsole(ConsoleColor.DarkGreen, "All done, you can continue.");
         }
 
         public void Update()
@@ -154,7 +164,7 @@ namespace Academy_Presentation.Controllers
                 var findbyid = _studentService.GetById(id);
                 if (findbyid != null)
                 {
-                    Helper.PrintConsole(ConsoleColor.Blue, "Enter new Student Nama:");
+                    Helper.PrintConsole(ConsoleColor.Blue, "Enter new Student Name:");
                     string newstudentName = Console.ReadLine();
                     if (string.IsNullOrWhiteSpace(newstudentName)) newstudentName = findbyid.Name;
                     Helper.PrintConsole(ConsoleColor.Blue, "Enter new Student Surname:");
