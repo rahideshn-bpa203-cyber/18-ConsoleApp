@@ -18,7 +18,7 @@ namespace Academy_Presentation.Controllers
         {
         Name: Helper.PrintConsole(ConsoleColor.Blue, "Add group Name");
             string groupName = Console.ReadLine();
-            if (string.IsNullOrEmpty(groupName)|| groupName.Any(char.IsDigit) || (groupName.Length > 30))
+            if (string.IsNullOrEmpty(groupName)|| (groupName.Length >30))
             {
                 Helper.PrintConsole(ConsoleColor.Red, "Group name is usually empty");
                 goto Name;
@@ -26,7 +26,7 @@ namespace Academy_Presentation.Controllers
 
         Teacher: Helper.PrintConsole(ConsoleColor.Blue, "Add group Teacher");
             string groupTeacher = Console.ReadLine();
-            if (string.IsNullOrEmpty(groupTeacher) || groupTeacher.Any(char.IsDigit) || (groupTeacher.Length > 30)||(!groupTeacher.All(char.IsLetter)||(groupTeacher.Length>3)))
+            if (string.IsNullOrEmpty(groupTeacher) || groupTeacher.Any(char.IsDigit) ||(groupName.Length<3))
             {
                 Helper.PrintConsole(ConsoleColor.Red, "Group Teacher is usually empty");
                 goto Teacher;
@@ -229,7 +229,7 @@ namespace Academy_Presentation.Controllers
 
                     var updateGroups = _groupService.Update(id, groups);
 
-                    if (updateGroups == null) { Helper.PrintConsole(ConsoleColor.Red, "Library not Updated"); goto GroupID; }
+                    if (updateGroups == null) { Helper.PrintConsole(ConsoleColor.Red, "Group not Updated"); goto GroupID; }
                     else
                     {
                         Helper.PrintConsole(ConsoleColor.Green, $"Group ID: {id}, Group name: {groups.Name}, Teacher: {groups.Teacher}, Group Room: {groups.Room} ");
